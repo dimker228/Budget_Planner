@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+
 
 namespace Budget_Planner.Model
 {
@@ -12,12 +8,12 @@ namespace Budget_Planner.Model
         public ApplicationContext() : base("DefaultConnection")
         {
         }
-        public DbSet<Balance> Balances { get; set; }
-        public DbSet<Category> Categorys { get; set; }
-        public DbSet<CategoryToOperation> CategoryToOperations { get; set; }
-        public DbSet<CategoryToOperationType> CategoryToOperationTypes { get; set; }
-        public DbSet<Operation> Operations { get; set; }
-        public DbSet<OperationType> OperationTypes { get; set; }
-        public DbSet<OperationTypeToOperation> OperationTypeToOperations { get; set; }
+        public DbSet<Balances> Balances { get; set; }
+        public DbSet<Categories> Categories { get; set; }
+        public DbSet<CategoriesToOperation> CategoryToOperations { get; set; }
+        public DbSet<CategoriesToOperationTypes> CategoryToOperationTypes { get; set; }
+        public DbSet<Operations> Operations { get; set; }
+        public DbSet<OperationTypes> OperationTypes { get; set; }
+        public DbSet<OperationTypesToOperations> OperationTypeToOperations { get; set; }
     }
 }

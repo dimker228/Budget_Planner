@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace Budget_Planner.Model
 {
-    internal class CategoryToOperation : INotifyCollectionChanged
+    internal class Operations : INotifyPropertyChanged
     {
         public long Id { get; set; }
-        public long FkIdOperation { get; set; }
-        public long FkIdCategory { get; set; }
+        public string Sum { get; set; }
+        public string Comment { get; set; }
 
-        public CategoryToOperation(long Id_, long FkIdOperation_, long FkIdCategory_)
+        public Operations(long Id_, string Sum_, string Comment_)
         {
             this.Id = Id_;
-            this.FkIdOperation = FkIdOperation_;
-            this.FkIdCategory = FkIdCategory_;
+            this.Sum = Sum_;
+            this.Comment = Comment_;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

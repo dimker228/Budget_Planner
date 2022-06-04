@@ -83,14 +83,15 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Model\ApplicationContext.cs" />
-    <Compile Include="Model\Balance.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\CategoryToOperation.cs" />
-    <Compile Include="Model\CategoryToOperationType.cs" />
-    <Compile Include="Model\Operation.cs" />
-    <Compile Include="Model\OperationType.cs" />
-    <Compile Include="Model\OperationTypeToOperation.cs" />
+    <Compile Include="Model\Balances.cs" />
+    <Compile Include="Model\Categories.cs" />
+    <Compile Include="Model\CategoriesToOperation.cs" />
+    <Compile Include="Model\CategoriesToOperationTypes.cs" />
+    <Compile Include="Model\Operations.cs" />
+    <Compile Include="Model\OperationTypes.cs" />
+    <Compile Include="Model\OperationTypesToOperations.cs" />
     <Compile Include="RelayCommand.cs" />
+    <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -114,6 +115,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="BudgetPlannerDb.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -124,7 +128,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\" />
+    <Folder Include="View\PagesView\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

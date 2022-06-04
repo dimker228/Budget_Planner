@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace Budget_Planner.Model
 {
-    internal class Balance : INotifyCollectionChanged
+    internal class Balances : INotifyCollectionChanged
     {
         public long Id { get; set; }
-        public string Balances { get; set; }
+        public string Balance { get; set; }
         public string BalanceType { get; set; }
 
-        public Balance(long Id_, string Balances_, string BalanceType_)
+        public Balances(long Id_, string Balances_, string BalanceType_)
         {
             this.Id = Id_;
-            this.Balances = Balances_;
+            this.Balance = Balances_;
             this.BalanceType = BalanceType_;
         }
 

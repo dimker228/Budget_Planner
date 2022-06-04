@@ -8,5 +8,11 @@
         Title="Budget planner" Height="450" Width="800">
     <Grid>
         
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+       
+        
     </Grid>
 </Window>
