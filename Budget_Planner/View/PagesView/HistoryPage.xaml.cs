@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Budget_Planner.Model;
+using Budget_Planner.ViewModel;
 
 namespace Budget_Planner.View.PagesView
 {
@@ -23,6 +25,7 @@ namespace Budget_Planner.View.PagesView
         public HistoryPage()
         {
             InitializeComponent();
+            DataContext = new ApplicationViewModel();
         }
     }
 }

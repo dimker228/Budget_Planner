@@ -9,15 +9,15 @@
       Title="HistoryPage">
 
     <Grid>
-        <DataGrid ItemsSource="{Binding Operations}">
-            <DataGrid>
-               
-                    <TextBlock Text="{Binding Sum}" />
+        <DataGrid ItemsSource="{Binding Categories}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование"   Binding="{Binding CategoryName}" />
+                    <!--< TextBlock  Text="{Binding CategoryName}" />
                     <TextBlock Text="{Binding Type}" />
                     <TextBlock Text="{Binding Category}" />
-                    <TextBlock Text="{Binding Comment}" />
+                    <TextBlock Text="{Binding Comment}" />-->
                
-            </DataGrid>
+            </DataGrid.Columns>
 
         </DataGrid>
     </Grid>
