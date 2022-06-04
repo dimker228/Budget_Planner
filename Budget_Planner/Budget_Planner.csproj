@@ -82,6 +82,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Model\ApplicationContext.cs" />
+    <Compile Include="Model\Balance.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CategoryToOperation.cs" />
+    <Compile Include="Model\CategoryToOperationType.cs" />
+    <Compile Include="Model\Operation.cs" />
+    <Compile Include="Model\OperationType.cs" />
+    <Compile Include="Model\OperationTypeToOperation.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
