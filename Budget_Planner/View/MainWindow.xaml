@@ -12,7 +12,13 @@
             <ColumnDefinition Width="100"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-       
-        
+        <Menu>
+            <Button Content="Счет" />
+            <Button Content="Новая операция" />
+            <Button Content="История" Command="{Binding OpenHistoryPage}" />
+        </Menu>
+        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
+
+
     </Grid>
 </Window>
