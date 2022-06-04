@@ -9,13 +9,13 @@
     <Grid>
         
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition/>
+            <ColumnDefinition MinWidth="120" MaxWidth="300" Width="*"/>
+            <ColumnDefinition MinWidth="700" Width="*" />
         </Grid.ColumnDefinitions>
         <Menu>
-            <Button Content="Счет" />
-            <Button Content="Новая операция" />
-            <Button Content="История" Command="{Binding OpenHistoryPage}" />
+            <Button    Content="Счет" />
+            <Button    Content="Новая операция" />
+            <Button  Content="История" Command="{Binding OpenHistoryPage}" />
         </Menu>
         <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" />
 

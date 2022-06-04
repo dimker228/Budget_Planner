@@ -24,7 +24,7 @@ namespace Budget_Planner
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            DataContext = new NavigationPagesViewModel();
         }
     }
 }

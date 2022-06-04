@@ -12,6 +12,7 @@ namespace Budget_Planner.ViewModel
 {
     internal class NavigationPagesViewModel
     {
+
         private HistoryPage _historyPage;
         private Page _currentPage;
         public Page CurrentPage
