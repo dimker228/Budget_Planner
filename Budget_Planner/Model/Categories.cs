@@ -11,22 +11,9 @@ namespace Budget_Planner.Model
 {
     public class Categories : INotifyPropertyChanged
     {
-  //      public Category()
-  //      {
-
-  //      }
-		//public long Id { get; set; }
-        
-
-  //      private string _CategoryName;
-  //      public string CategoryName
-  //      {
-  //          get { return _CategoryName; }
-  //          set { _CategoryName = value; }
-  //      }
 
         public int Id { get; set; }
-        //public string CategoryName { get; set; }
+  
 
         private string _categoryName;
 
@@ -39,11 +26,7 @@ namespace Budget_Planner.Model
                 OnPropertyChanged("CategoryName");
             }
         }
-        //public Category(string CategoryName_)
-        //{
-        //    this.CategoryName = CategoryName_;
-        //}
-
+     
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

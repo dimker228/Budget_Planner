@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Budget_Planner.Model
 {
-    internal class CategoriesToOperation : INotifyCollectionChanged
+    public class CategoriesToOperation : INotifyCollectionChanged
     {
         public long Id { get; set; }
         public long FkIdOperation { get; set; }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Budget_Planner.Model
 {
-    internal class Operations : INotifyPropertyChanged
+    public class Operations : INotifyPropertyChanged
     {
         public long Id { get; set; }
         public string Sum { get; set; }
