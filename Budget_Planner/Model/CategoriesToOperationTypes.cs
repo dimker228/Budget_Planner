@@ -11,16 +11,14 @@ namespace Budget_Planner.Model
 {
     public class CategoriesToOperationTypes : INotifyPropertyChanged
     {
-        public long Id { get; set; }
-        public long FkIdOperationToType { get; set; }
-        public long FkIdCatefory { get; set; }
+        public int Id { get; set; }
+        public int FkIdOperationToType { get; set; }
+        public int FkIdCategory { get; set; }
+        public virtual OperationTypes OperationTypes { get; set; }
+        public virtual Categories Categories { get; set; }
 
-        public CategoriesToOperationTypes(long Id_, long FkIdOperationToType_, long FkIdCatefory_)
-        {
-            this.Id = Id_;
-            this.FkIdOperationToType = FkIdOperationToType_;
-            this.FkIdCatefory = FkIdCatefory_;
-        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

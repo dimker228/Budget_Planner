@@ -11,14 +11,20 @@ namespace Budget_Planner.Model
 {
     public class OperationTypes : INotifyPropertyChanged
     {
-        public long Id { get; set; }
-        public string TypeOperationName { get; set; }
+        public int Id { get; set; }
+        private string _typeOperationName;
 
-        public OperationTypes(long Id_, string TypeOperationName_)
+        public string TypeOperationName
         {
-            this.Id = Id_;
-            this.TypeOperationName = TypeOperationName_;
+            get { return _typeOperationName;}
+             set
+             {
+                _typeOperationName = value; 
+                 OnPropertyChanged("TypeOperationName");
+             }
         }
+
+      
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -11,16 +11,30 @@ namespace Budget_Planner.Model
 {
     public class Operations : INotifyPropertyChanged
     {
-        public long Id { get; set; }
-        public string Sum { get; set; }
-        public string Comment { get; set; }
+        public int Id { get; set; }
+        private string _sum;
+        private string _comment;
 
-        public Operations(long Id_, string Sum_, string Comment_)
+        public string Sum
         {
-            this.Id = Id_;
-            this.Sum = Sum_;
-            this.Comment = Comment_;
+            get { return _sum; }
+            set
+            {
+                _sum = value; 
+                OnPropertyChanged("Sum");
+            }
         }
+
+        public string Comment
+        {
+            get{return _comment}
+            set
+            {
+                _comment=value;
+                OnPropertyChanged("comment");
+            }
+        }
+      
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

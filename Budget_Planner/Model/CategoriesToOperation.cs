@@ -15,14 +15,10 @@ namespace Budget_Planner.Model
         public long FkIdOperation { get; set; }
         public long FkIdCategory { get; set; }
 
-        public CategoriesToOperation(long Id_, long FkIdOperation_, long FkIdCategory_)
-        {
-            this.Id = Id_;
-            this.FkIdOperation = FkIdOperation_;
-            this.FkIdCategory = FkIdCategory_;
-        }
+       public virtual Operations Operations { get; set; }
+       public virtual Categories Categories { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+       public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
