@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 using Budget_Planner.View.PagesView;
 
 namespace Budget_Planner.ViewModel
 {
-    internal class NavigationPagesViewModel
+    public class NavigationPagesViewModel : INotifyPropertyChanged
     {
-        private BalancePage _balancePage;
-        private NewOperationPage _newOperationPage;
-        private HistoryPage _historyPage;
+        private Page _balancePage;
+        private Page _newOperationPage;
+        private Page _historyPage;
+      
+
         private Page _currentPage;
         public Page CurrentPage
         {
@@ -32,9 +34,41 @@ namespace Budget_Planner.ViewModel
 
         public NavigationPagesViewModel()
         {
-            _historyPage = new HistoryPage();
+            _newOperationPage = new NewOperationPage();
+            _historyPage = new View.PagesView.HistoryPage();
+            _balancePage = new BalancePage();
             CurrentPage = _historyPage;
             //CurrentPage = _addPageProfession;
+        }
+        public RelayCommand OpenAddPage
+        {
+            get
+            {
+                return new RelayCommand(async (obj) =>
+                {
+                    CurrentPage = _newOperationPage;
+                });
+            }
+        }
+        public RelayCommand OpenHistoryPage
+        {
+            get
+            {
+                return new RelayCommand(async (obj) =>
+                {
+                    CurrentPage = _historyPage;
+                });
+            }
+        }
+        public RelayCommand OpenBalancePage
+        {
+            get
+            {
+                return new RelayCommand(async (obj) =>
+                {
+                    CurrentPage = _balancePage;
+                });
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

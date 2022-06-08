@@ -25,7 +25,7 @@ namespace Budget_Planner.View.PagesView
         public HistoryPage()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            DataContext = new HistoryViewModel();
         }
     }
 }

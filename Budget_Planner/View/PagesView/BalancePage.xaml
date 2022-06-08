@@ -8,7 +8,11 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BalancePage">
 
-    <Grid>
-        
+    <Grid >
+        <StackPanel>
+            <TextBlock FontSize="30"  Text="Баланс:"/>
+
+            <TextBlock FontSize="30"  Text="{Binding Balances.Balances}"/>
+        </StackPanel>
     </Grid>
 </Page>

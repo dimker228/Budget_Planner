@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\CategoriesToOperationTypes.cs" />
+    <Compile Include="ViewModel\BalanceViewModel.cs" />
+    <Compile Include="ViewModel\HistoryViewModel.cs" />
     <Compile Include="View\PagesView\BalancePage.xaml.cs">
       <DependentUpon>BalancePage.xaml</DependentUpon>
     </Compile>
@@ -94,11 +97,8 @@
     <Compile Include="Model\ApplicationContext.cs" />
     <Compile Include="Model\Balances.cs" />
     <Compile Include="Model\Categories.cs" />
-    <Compile Include="Model\CategoriesToOperation.cs" />
-    <Compile Include="Model\CategoriesToOperationTypes.cs" />
     <Compile Include="Model\Operations.cs" />
     <Compile Include="Model\OperationTypes.cs" />
-    <Compile Include="Model\OperationTypesToOperations.cs" />
     <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\NavigationPagesViewModel.cs" />

@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using Budget_Planner.Model;
+
 
 namespace Budget_Planner.ViewModel
 {
@@ -15,17 +15,24 @@ namespace Budget_Planner.ViewModel
     {
         #region Lists
 
-        private RelayCommand addCommand;
-        private RelayCommand deleteCommand;
-        private RelayCommand editCommand;
+        private string _sum, _comment;
+        private int _comboType, _comboCategories;
+        private RelayCommand _nullCommand;
+        private RelayCommand _loadComboCategories;
+        private RelayCommand _addCommand;
+        private RelayCommand _deleteCommand;
+        private RelayCommand _editCommand;
         ApplicationContext db;
         IEnumerable<Balances> balances;
-        IEnumerable<CategoriesToOperation> categoriesToOperations;
         IEnumerable<CategoriesToOperationTypes> categoriesToOperationsTypes;
         IEnumerable<Operations> operations;
-        IEnumerable<OperationTypesToOperations> operationsTypesToOperations;
         IEnumerable<OperationTypes> operationsTypes;
         IEnumerable<Categories> categories;
+        public string Sum { get;set; }
+        
+        public string Comment { get; set; }
+        public int ComboType { get; set; }
+        public int ComboCategories { get; set; }
         public IEnumerable<Balances> Balances
         {
             get { return balances; }
@@ -35,15 +42,7 @@ namespace Budget_Planner.ViewModel
                 OnPropertyChanged("Balances");
             }
         }
-        public IEnumerable<CategoriesToOperation> CategoriesToOperations
-        {
-            get { return categoriesToOperations; }
-            set
-            {
-                categoriesToOperations = value;
-                OnPropertyChanged("CategoriesToOperations");
-            }
-        }
+
         public IEnumerable<CategoriesToOperationTypes> CategoriesToOperationTypes
         {
             get { return categoriesToOperationsTypes; }
@@ -62,15 +61,7 @@ namespace Budget_Planner.ViewModel
                 OnPropertyChanged("Operations");
             }
         }
-        public IEnumerable<OperationTypesToOperations> OperationTypesToOperations
-        {
-            get { return operationsTypesToOperations; }
-            set
-            {
-                operationsTypesToOperations = value;
-                OnPropertyChanged("OperationTypesToOperations");
-            }
-        }
+
         public IEnumerable<OperationTypes> OperationTypes
         {
             get { return operationsTypes; }
@@ -92,61 +83,125 @@ namespace Budget_Planner.ViewModel
         #endregion
         public ApplicationViewModel()
         {
-            db = new ApplicationContext();
-            db.Categories.Load();
-            Categories = db.Categories.Local.ToBindingList();
+            //db = new ApplicationContext();
+            //var c = db.Categories;
+            //var o = db.Operations;
+            //var t = new OperationTypes();
+            //db.Categories.Load();
+            //db.OperationTypes.Load();
+            //Categories = db.Categories.ToList();
+            //OperationTypes = db.OperationTypes.ToList();
+            var operationsQuery =
+                from op in Operations
+                join Type in OperationTypes on op.Type_Id equals Type.Id
+                select new
+                {
+                    Sum = op.Sum,
+                    TypeName = Type.TypeOperationName,
+                    Comment = op.Comment,
+                    Date = op.Date,
+                    CategoriesId = op.Categories_Id
+                
+                };
+            //// a property from each element.
+            //var innerJoinQuery =
+            //    from category in categories
+            //    join prod in products on category.ID equals prod.CategoryID
+            //    select new { Category = category.ID, Product = prod.Name };
+
         }
 
         #region Command
+
 
         public RelayCommand AddCommand
         {
             get
             {
-                return addCommand ??
-                       (addCommand = new RelayCommand((o) =>
+                return _addCommand ??
+                       (_addCommand = new RelayCommand((o) =>
                        {
-                           var employee = new Employee();
-                           employee.FirstName = FirstName;
-                           employee.LastName = LastName;
-                           employee.MiddleName = MiddleName;
-                           employee.BirthDay = BirthDay;
-                           db.Employee.Add(employee);
-                           db.SaveChanges();
-                       //NavigationPagesViewModel navigationPagesView = new NavigationPagesViewModel();
-                       //_addPageProfession = new AddPageProfession();
-                       //navigationPagesView.CurrentPage = _addPageProfession;
+                           int num;
+                           bool isNum = int.TryParse(Sum, out num);
+                           if (isNum || ComboType != 0 || ComboCategories != 0) 
+                           {
+                               //var operations = new Operations();
+                               //operations.Sum = Sum;
+                               //operations.Type_Id = ComboType;
+                               //operations.Comment = Comment;
+                               //operations.Categories_Id = ComboCategories;
+                               //operations.Date = DateTime.Now.ToString();
+                               //operations.Categories = new List<Categories>();
+                               //operations.Categories.AddRange(Categories);
+                               //db.Operations.Add(operations);
+                               db.SaveChanges();
+                               //var balances = new Balances();
+                               MessageBox.Show("Операция добавлена","Успешно");
+                               //balances.Balance = Convert.ToString(Convert.ToInt32(balances.Balance) + Convert.ToInt32(operations.Sum));
+                               //db.Balances.Add(balances);
+                           }
+                           else
+                           {
+                               MessageBox.Show("Проверьте корректность ввода", "Ошибка");
+                           }
 
                        }));
             }
         }
-        // команда редактирования
-        public RelayCommand EditCommand
+
+        //public async void MessageMethod()
+        //{
+        //    //MessageDialog dialog = new MessageDialog("Проверьте заполненные данные");
+        //    MessageBox dialog = new MessageBox();
+        //    await dialog.ShowAsync();
+        //}
+        public RelayCommand LoadComboCategories
         {
             get
             {
-                return editCommand ??
-                  (editCommand = new RelayCommand((o) =>
-                  {
-
-
-                      var employee = new Employee();
-
-                  //// получаем измененный объект
-                      employee = db.Employee.Find(employee.Id);
-                      if (employee != null)
-                      {
-                          employee = new Employee();
-                          employee.FirstName = FirstName;
-                          employee.LastName = LastName;
-                          employee.MiddleName = MiddleName;
-                          employee.BirthDay = BirthDay;
-                          db.Entry(employee).State = EntityState.Modified;
-                          db.SaveChanges();
-                      }
-                  }));
+                return _loadComboCategories ??
+                       (_loadComboCategories = new RelayCommand((o) =>
+                       {
+                           db.Categories.Load();
+                           if (ComboType == 1)
+                           {
+                               Categories = db.Categories.Local.Where(w => w.Id == ComboType).ToList();
+                           }
+                           else
+                           {
+                               Categories = db.Categories.Local.Where(w => w.Id == ComboType).ToList();
+                           }
+                       }));
             }
         }
+        public RelayCommand NullCommand
+        {
+            get
+            {
+                return _nullCommand ??
+                       (_nullCommand = new RelayCommand((o) =>
+                       {
+                           Sum = "";
+                           ComboType = 0;
+                           Comment = "";
+                           ComboCategories = 0;
+                       }));
+            }
+        }
+        //// команда редактирования
+        //public RelayCommand EditCommand
+        //{
+        //    get
+        //    {
+        //        return editCommand ??
+        //          (editCommand = new RelayCommand((selectedItem) =>
+        //          {
+        //                 db.Operations.Entry(Some)
+        //                 db.SaveChanges();
+        //          
+        //          }));
+        //    }
+        //}
         // команда удаления
         //public RelayCommand DeleteCommand
         //{
@@ -155,23 +210,7 @@ namespace Budget_Planner.ViewModel
         //        return deleteCommand ??
         //          (deleteCommand = new RelayCommand((selectedItem) =>
         //          {
-        //              Employee employee = selectedItem as Employee;
-
-        //              Employee vm = new Employee()
-        //              {
-        //                  Id = employee.Id,
-        //                  FirstName = employee.FirstName,
-        //                  LastName = employee.LastName,
-        //                  MiddleName = employee.MiddleName,
-        //                  BirthDay = employee.BirthDay
-        //              };
-        //              EmployeeWindow employeeWindow = new EmployeeWindow(vm);
-
-        //              if (selectedItem == null) return;
-        //              // получаем выделенный объект
-
-        //              employee = db.Employee.Find(employeeWindow.Employee.Id);
-        //              db.Employee.Remove(employee);
+        //              db.Operations.Remove(Some.Id)
         //              db.SaveChanges();
         //          }));
         //    }

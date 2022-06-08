@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Budget_Planner.ViewModel;
 
 namespace Budget_Planner.View.PagesView
 {
@@ -23,6 +24,7 @@ namespace Budget_Planner.View.PagesView
         public BalancePage()
         {
             InitializeComponent();
+            DataContext = new BalanceViewModel();
         }
     }
 }

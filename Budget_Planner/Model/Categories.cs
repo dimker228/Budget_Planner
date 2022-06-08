@@ -13,7 +13,7 @@ namespace Budget_Planner.Model
     {
 
         public int Id { get; set; }
-  
+
 
         private string _categoryName;
 
@@ -26,14 +26,16 @@ namespace Budget_Planner.Model
                 OnPropertyChanged("CategoryName");
             }
         }
-     
+
+        //public List<Operations> Operations { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }

@@ -16,15 +16,16 @@ namespace Budget_Planner.Model
 
         public string TypeOperationName
         {
-            get { return _typeOperationName;}
-             set
-             {
-                _typeOperationName = value; 
-                 OnPropertyChanged("TypeOperationName");
-             }
+            get { return _typeOperationName; }
+            set
+            {
+                _typeOperationName = value;
+                OnPropertyChanged("TypeOperationName");
+            }
         }
+        //public List<Operations> Operations { get; set; }
 
-      
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

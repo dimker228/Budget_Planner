@@ -2,25 +2,35 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Budget_Planner.Model;
 
-namespace Budget_Planner.Model
+namespace Budget_Planner.ViewModel
 {
-    public class Balances : INotifyCollectionChanged
+    internal class BalanceViewModel : INotifyCollectionChanged
     {
-        public int Id { get; set; }
-        private string _balance;
-        public string Balance
+        ApplicationContext db;
+        private IEnumerable<Balances> _balances;
+
+        public IEnumerable<Balances> Balances
         {
-            get { return _balance; }
+            get { return _balances; }
             set
             {
-                _balance = value;
-                OnPropertyChanged("Balance");
+                _balances = value;
+                OnPropertyChanged("Balances");
             }
+        }
+        public BalanceViewModel()
+        {
+            //db = new ApplicationContext();
+            //db.Balances.Load();
+            //Balances = db.Balances.ToList();
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -31,6 +41,5 @@ namespace Budget_Planner.Model
         }
 
         public event NotifyCollectionChangedEventHandler CollectionChanged;
-
     }
 }
