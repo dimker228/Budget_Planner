@@ -17,9 +17,9 @@
                     <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <Button  Content="Счет" Command="{Binding OpenBalancePage}" Width="95"  Height="38"   />
-                <Button    Content="Новая операция"  Command="{Binding OpenAddPage }" Height="42" />
-                <Button  Content="История" Command="{Binding OpenHistoryPage}" Width="96" Height="42" />
+            <Button  Content="Счет" Command="{Binding OpenBalancePage}" CommandParameter="{Binding}" Width="95"  Height="38"   />
+            <Button    Content="Новая операция"  Command="{Binding OpenAddPage }" CommandParameter="{Binding}" Height="42" />
+            <Button  Content="История" Command="{Binding OpenHistoryPage}" CommandParameter="{Binding}" Width="96" Height="42" />
         </Menu>
         <Frame Grid.Column="1" Content="{Binding CurrentPage, Mode= TwoWay , UpdateSourceTrigger= PropertyChanged}" NavigationUIVisibility="Hidden" />
 

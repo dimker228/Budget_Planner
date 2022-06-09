@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Budget_Planner.Class;
 using Budget_Planner.View.PagesView;
 
 namespace Budget_Planner.ViewModel
@@ -38,37 +39,25 @@ namespace Budget_Planner.ViewModel
             _historyPage = new View.PagesView.HistoryPage();
             _balancePage = new BalancePage();
             CurrentPage = _historyPage;
+            OpenAddPage = new OpenAddPageCommand();
+            OpenHistoryPage = new OpenHistoryPageCommand();
+            OpenBalancePage = new OpenBalancePageCommand();
             //CurrentPage = _addPageProfession;
         }
-        public RelayCommand OpenAddPage
+        public ICommand OpenAddPage
         {
-            get
-            {
-                return new RelayCommand(async (obj) =>
-                {
-                    CurrentPage = _newOperationPage;
-                });
-            }
+            get;
+
         }
-        public RelayCommand OpenHistoryPage
+        public ICommand OpenHistoryPage
         {
-            get
-            {
-                return new RelayCommand(async (obj) =>
-                {
-                    CurrentPage = _historyPage;
-                });
-            }
+            get;
+
         }
-        public RelayCommand OpenBalancePage
+        public ICommand OpenBalancePage
         {
-            get
-            {
-                return new RelayCommand(async (obj) =>
-                {
-                    CurrentPage = _balancePage;
-                });
-            }
+            get;
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")

@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Budget_Planner.Model;
 
 namespace Budget_Planner.ViewModel
@@ -27,12 +23,15 @@ namespace Budget_Planner.ViewModel
         }
         public BalanceViewModel()
         {
+            ListMethod();
+        }
+
+        public void ListMethod()
+        {
             db = new ApplicationContext();
             db.Balances.Load();
             Balances = db.Balances.Local.ToBindingList();
-
         }
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

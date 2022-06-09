@@ -76,6 +76,9 @@
     </ApplicationDefinition>
     <Compile Include="Class\AddCommand.cs" />
     <Compile Include="Class\CommandClass.cs" />
+    <Compile Include="Class\OpenAddPageCommand.cs" />
+    <Compile Include="Class\OpenBalancePageCommand.cs" />
+    <Compile Include="Class\OpenHistoryPageCommand.cs" />
     <Compile Include="Model\CategoriesToOperationTypes.cs" />
     <Compile Include="Model\OperationInclude.cs" />
     <Compile Include="ViewModel\BalanceViewModel.cs" />

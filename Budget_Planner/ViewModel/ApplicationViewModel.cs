@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Input;
 using Budget_Planner.Class;
 using Budget_Planner.Model;
@@ -21,15 +18,7 @@ namespace Budget_Planner.ViewModel
         private string _sum;
         private string _comment;
         private int _comboType, _comboCategories;
-        private RelayCommand _nullCommand;
-        private RelayCommand _loadComboCategories;
-        private RelayCommand _addCommand;
-        private RelayCommand _deleteCommand;
-        private RelayCommand _editCommand;
         ApplicationContext db;
-        IEnumerable<Balances> balances;
-        IEnumerable<CategoriesToOperationTypes> categoriesToOperationsTypes;
-        IEnumerable<Operations> operations;
         IEnumerable<OperationTypes> operationsTypes;
         IEnumerable<Categories> categories;
         public string Sum
@@ -66,34 +55,7 @@ namespace Budget_Planner.ViewModel
                 OnPropertyChanged("ComboCategories");
             }
         }
-        public IEnumerable<Balances> Balances
-        {
-            get { return balances; }
-            set
-            {
-                balances = value;
-                OnPropertyChanged("Balances");
-            }
-        }
-
-        public IEnumerable<CategoriesToOperationTypes> CategoriesToOperationTypes
-        {
-            get { return categoriesToOperationsTypes; }
-            set
-            {
-                categoriesToOperationsTypes = value;
-                OnPropertyChanged("CategoriesToOperationTypes");
-            }
-        }
-        public IEnumerable<Operations> Operations
-        {
-            get { return operations; }
-            set
-            {
-                operations = value;
-                OnPropertyChanged("Operations");
-            }
-        }
+     
 
         public IEnumerable<OperationTypes> OperationTypes
         {
