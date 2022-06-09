@@ -24,7 +24,7 @@ namespace Budget_Planner.View.PagesView
         public NewOperationPage()
         {
             InitializeComponent();
-            DataContext = new ApplicationViewModel();
+            //DataContext = new ApplicationViewModel();
         }
     }
 }

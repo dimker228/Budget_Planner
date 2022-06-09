@@ -29,7 +29,7 @@ namespace Budget_Planner.ViewModel
         {
             db = new ApplicationContext();
             db.Balances.Load();
-            Balances = db.Balances.ToList();
+            Balances = db.Balances.Local.ToBindingList();
 
         }
 
@@ -39,7 +39,6 @@ namespace Budget_Planner.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
-
         public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }

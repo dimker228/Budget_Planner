@@ -12,7 +12,7 @@
         <StackPanel>
             <TextBlock FontSize="30"  Text="Баланс:"/>
 
-            <ListBox x:Name="phonesList" ItemsSource="{Binding Balances}">
+            <ListBox x:Name="phonesList" ItemsSource="{Binding Balances, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
