@@ -12,7 +12,16 @@
         <StackPanel>
             <TextBlock FontSize="30"  Text="Баланс:"/>
 
-            <TextBlock FontSize="30"  Text="{Binding Balances.Balances}"/>
+            <ListBox x:Name="phonesList" ItemsSource="{Binding Balances}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Balance}" FontSize="16" />
+                            <TextBlock Text="{Binding BalanceType}" FontSize="12" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
     </Grid>
 </Page>

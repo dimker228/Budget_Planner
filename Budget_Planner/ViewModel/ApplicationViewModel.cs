@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -83,31 +84,14 @@ namespace Budget_Planner.ViewModel
         #endregion
         public ApplicationViewModel()
         {
-            //db = new ApplicationContext();
+            db = new ApplicationContext();
             //var c = db.Categories;
             //var o = db.Operations;
             //var t = new OperationTypes();
-            //db.Categories.Load();
-            //db.OperationTypes.Load();
-            //Categories = db.Categories.ToList();
-            //OperationTypes = db.OperationTypes.ToList();
-            var operationsQuery =
-                from op in Operations
-                join Type in OperationTypes on op.Type_Id equals Type.Id
-                select new
-                {
-                    Sum = op.Sum,
-                    TypeName = Type.TypeOperationName,
-                    Comment = op.Comment,
-                    Date = op.Date,
-                    CategoriesId = op.Categories_Id
-                
-                };
-            //// a property from each element.
-            //var innerJoinQuery =
-            //    from category in categories
-            //    join prod in products on category.ID equals prod.CategoryID
-            //    select new { Category = category.ID, Product = prod.Name };
+            db.Categories.Load();
+            db.OperationTypes.Load();
+            Categories = db.Categories.ToList();
+            OperationTypes = db.OperationTypes.ToList();
 
         }
 
@@ -125,15 +109,21 @@ namespace Budget_Planner.ViewModel
                            bool isNum = int.TryParse(Sum, out num);
                            if (isNum || ComboType != 0 || ComboCategories != 0) 
                            {
-                               //var operations = new Operations();
-                               //operations.Sum = Sum;
-                               //operations.Type_Id = ComboType;
-                               //operations.Comment = Comment;
-                               //operations.Categories_Id = ComboCategories;
-                               //operations.Date = DateTime.Now.ToString();
-                               //operations.Categories = new List<Categories>();
-                               //operations.Categories.AddRange(Categories);
-                               //db.Operations.Add(operations);
+
+                               var operations = new Operations();
+                               var b = new Balances();
+                               b.Id = 1;
+                               var balances = db.Balances.Find(b.Id);
+                               operations.Sum = Sum;
+                               operations.Type_Id = ComboType;
+                               operations.Comment = Comment;
+                               operations.Categories_Id = ComboCategories;
+                               operations.Date = DateTime.Now;
+                               db.Operations.Add(operations);
+                               db.SaveChanges();
+                               db.Entry(operations).State = EntityState.Detached;
+                               balances.Balance = Convert.ToString(Convert.ToDouble(operations.Sum) + Convert.ToDouble(balances.Balance));
+                               db.Entry(balances).State = EntityState.Modified;
                                db.SaveChanges();
                                //var balances = new Balances();
                                MessageBox.Show("Операция добавлена","Успешно");

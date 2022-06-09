@@ -13,7 +13,7 @@ namespace Budget_Planner.Model
     public class Operations : INotifyPropertyChanged
     {
         public int Id { get; set; }
-        private string _date;
+        private DateTime _date;
         private string _sum;
         private string _comment;
         public int Categories_Id { get; set; }
@@ -21,8 +21,7 @@ namespace Budget_Planner.Model
 
         //public Categories Categories { get; set; }
         //public OperationTypes OperationTypes { get; set; }
-        //public List<Categories> Categories { get; set; }
-        //public List<OperationTypes> OperationTypes { get; set; }
+
         public string Sum
         {
             get { return _sum; }
@@ -32,7 +31,7 @@ namespace Budget_Planner.Model
                 OnPropertyChanged("Sum");
             }
         }
-        public string Date
+        public DateTime Date
         {
             get { return _date; }
             set

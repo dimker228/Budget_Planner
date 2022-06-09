@@ -27,9 +27,9 @@ namespace Budget_Planner.ViewModel
         }
         public BalanceViewModel()
         {
-            //db = new ApplicationContext();
-            //db.Balances.Load();
-            //Balances = db.Balances.ToList();
+            db = new ApplicationContext();
+            db.Balances.Load();
+            Balances = db.Balances.ToList();
 
         }
 

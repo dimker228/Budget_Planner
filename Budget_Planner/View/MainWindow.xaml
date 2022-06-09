@@ -7,14 +7,13 @@
         mc:Ignorable="d"
         Title="Budget planner" Height="450" Width="800">
     <Grid>
-        
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="120" MaxWidth="300" Width="*"/>
             <ColumnDefinition MinWidth="700" Width="*" />
         </Grid.ColumnDefinitions>
-        <Menu>
-            <Button    Content="Счет" Command="{Binding OpenBalancePage}"  />
-            <Button    Content="Новая операция"  Command="{Binding OpenAddPage }"/>
+        <Menu  >
+            <Button    Content="Счет" Command="{Binding OpenBalancePage}"   />
+            <Button    Content="Новая операция"  Command="{Binding OpenAddPage }" />
             <Button  Content="История" Command="{Binding OpenHistoryPage}" />
         </Menu>
         <Frame Grid.Column="1" Content="{Binding CurrentPage, Mode= TwoWay , UpdateSourceTrigger= PropertyChanged}" NavigationUIVisibility="Hidden" />

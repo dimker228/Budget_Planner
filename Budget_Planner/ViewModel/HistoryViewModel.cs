@@ -14,70 +14,29 @@ namespace Budget_Planner.ViewModel
     internal class HistoryViewModel : INotifyCollectionChanged
     {
         #region Lists
+        public List<OperationInclude> operationInclude { get; set; }
         private RelayCommand editCommand;
         ApplicationContext db;
-        IEnumerable<Balances> balances;
-        IEnumerable<CategoriesToOperationTypes> categoriesToOperationsTypes;
-        IEnumerable<Operations> operations;
-        IEnumerable<OperationTypes> operationsTypes;
-        IEnumerable<Categories> categories;
-        public string Sum { get; set; }
-        public string Comment { get; set; }
-        public IEnumerable<Balances> Balances
-        {
-            get { return balances; }
-            set
-            {
-                balances = value;
-                OnPropertyChanged("Balances");
-            }
-        }
-
-        public IEnumerable<CategoriesToOperationTypes> CategoriesToOperationTypes
-        {
-            get { return categoriesToOperationsTypes; }
-            set
-            {
-                categoriesToOperationsTypes = value;
-                OnPropertyChanged("CategoriesToOperationTypes");
-            }
-        }
-        public IEnumerable<Operations> Operations
-        {
-            get { return operations; }
-            set
-            {
-                operations = value;
-                OnPropertyChanged("Operations");
-            }
-        }
-
-        public IEnumerable<OperationTypes> OperationTypes
-        {
-            get { return operationsTypes; }
-            set
-            {
-                operationsTypes = value;
-                OnPropertyChanged("OperationTypes");
-            }
-        }
-        public IEnumerable<Categories> Categories
-        {
-            get { return categories; }
-            set
-            {
-                categories = value;
-                OnPropertyChanged("Categories");
-            }
-        }
         #endregion
         public HistoryViewModel()
         {
-            OperationTypes operationTypes = new OperationTypes();
-            Categories categories = new Categories();
+            // Реализация вывода, замена методу include или запросу join, не получилось т.к. модель C# не хранит в себе ссылки на таблицы, хоть я и добавлял внешние ключи
             db = new ApplicationContext();
-            db.Operations.Load();
-            Operations = db.Operations.ToList();
+            operationInclude = new List<OperationInclude>();
+            foreach (var item in db.Operations)
+            {
+                var typename = db.OperationTypes.Where(i => i.Id == item.Type_Id).FirstOrDefault();
+                var catname = db.Categories.Where(i => i.Id == item.Categories_Id).FirstOrDefault();
+                operationInclude.Add(new OperationInclude
+                {
+                    Sum = item.Sum,
+                    TypeOperationName = typename.TypeOperationName,
+                    Date = item.Date,
+                    CategoryName = catname.CategoryName,
+                    Comment = item.Comment
+                });
+                
+            }
 
 
         }
