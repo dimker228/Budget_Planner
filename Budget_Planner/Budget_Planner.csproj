@@ -102,7 +102,6 @@
     <Compile Include="Model\Categories.cs" />
     <Compile Include="Model\Operations.cs" />
     <Compile Include="Model\OperationTypes.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel\ApplicationViewModel.cs" />
     <Compile Include="ViewModel\NavigationPagesViewModel.cs" />
     <Compile Include="View\MainWindow.xaml.cs">
