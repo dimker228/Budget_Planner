@@ -95,6 +95,54 @@ namespace Budget_Planner.ViewModel
 
         }
 
+        #region Methods
+        //Метод добавления и прибавления суммы к балансу
+        public void AddMethodPlus()
+        {
+
+            var operations = new Operations();
+            var b = new Balances();
+            b.Id = 1;
+            var balances = db.Balances.Find(b.Id);
+            operations.Sum = Sum;
+            operations.Type_Id = ComboType;
+            operations.Comment = Comment;
+            operations.Categories_Id = ComboCategories;
+            operations.Date = DateTime.Now;
+            db.Operations.Add(operations);
+            db.SaveChanges();
+            db.Entry(operations).State = EntityState.Detached;
+            balances.Balance = Convert.ToString(Convert.ToDouble(operations.Sum) + Convert.ToDouble(balances.Balance));
+            db.Entry(balances).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+        }
+
+        // Метод добавления, и убавления суммы баланса
+        public void AddMethodMinus()
+        {
+            var operations = new Operations();
+            var b = new Balances();
+            b.Id = 1;
+            var balances = db.Balances.Find(b.Id);
+            operations.Sum = Sum;
+            operations.Type_Id = ComboType;
+            operations.Comment = Comment;
+            operations.Categories_Id = ComboCategories;
+            operations.Date = DateTime.Now;
+            db.Operations.Add(operations);
+            db.SaveChanges();
+            db.Entry(operations).State = EntityState.Detached;
+            balances.Balance = Convert.ToString(Convert.ToDouble(operations.Sum) - Convert.ToDouble(balances.Balance));
+            db.Entry(balances).State = EntityState.Modified;
+            db.SaveChanges();
+
+        }
+
+
+        #endregion
+
         #region Command
 
 
@@ -105,35 +153,23 @@ namespace Budget_Planner.ViewModel
                 return _addCommand ??
                        (_addCommand = new RelayCommand((o) =>
                        {
-                           int num;
-                           bool isNum = int.TryParse(Sum, out num);
-                           if (isNum || ComboType != 0 || ComboCategories != 0) 
-                           {
-
-                               var operations = new Operations();
-                               var b = new Balances();
-                               b.Id = 1;
-                               var balances = db.Balances.Find(b.Id);
-                               operations.Sum = Sum;
-                               operations.Type_Id = ComboType;
-                               operations.Comment = Comment;
-                               operations.Categories_Id = ComboCategories;
-                               operations.Date = DateTime.Now;
-                               db.Operations.Add(operations);
-                               db.SaveChanges();
-                               db.Entry(operations).State = EntityState.Detached;
-                               balances.Balance = Convert.ToString(Convert.ToDouble(operations.Sum) + Convert.ToDouble(balances.Balance));
-                               db.Entry(balances).State = EntityState.Modified;
-                               db.SaveChanges();
-                               //var balances = new Balances();
-                               MessageBox.Show("Операция добавлена","Успешно");
-                               //balances.Balance = Convert.ToString(Convert.ToInt32(balances.Balance) + Convert.ToInt32(operations.Sum));
-                               //db.Balances.Add(balances);
-                           }
-                           else
-                           {
-                               MessageBox.Show("Проверьте корректность ввода", "Ошибка");
-                           }
+                          int num;
+                          bool isNum = int.TryParse(Sum, out num);
+                          if (isNum && ComboType != 0 && ComboCategories != 0)
+                          {
+                               if (ComboType == 1)
+                                      AddMethodPlus();
+                               else 
+                               {
+                                      AddMethodMinus();
+                                     
+                               }
+                               MessageBox.Show("Операция добавлена", "Успешно");
+                          }
+                          else
+                          {
+                            MessageBox.Show("Проверьте корректность ввода", "Ошибка");
+                          }
 
                        }));
             }

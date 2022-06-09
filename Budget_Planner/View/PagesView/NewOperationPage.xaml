@@ -10,14 +10,23 @@
 
     <Grid>
         <StackPanel  Orientation="Vertical" >
+            <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="321">
+                <Label Content="Счет" Height="30" Width="143" />
+                <Label Content="Тип"  Height="30" Width="178"/>
+
+            </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" >
-                <TextBox Name="SumTxt"  Margin="10,10" Height="50" Width="120"  Text="{Binding Sum, Mode=TwoWay}"   HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <ComboBox Name="TypeCombo"  Margin="10,10" Height="50" Width="186" ItemsSource="{Binding OperationTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TypeOperationName" SelectedValuePath="Id"  SelectedValue="{Binding ComboType,  Mode=TwoWay}"    VerticalAlignment="Center">
+                <TextBox Name="SumTxt"  Margin="10,10" Height="30" Width="120"  Text="{Binding Sum, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <ComboBox Name="TypeCombo"  Margin="10,10" Height="30" Width="186" ItemsSource="{Binding OperationTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TypeOperationName" SelectedValuePath="Id"  SelectedValue="{Binding ComboType,  Mode=TwoWay}"    VerticalAlignment="Center">
                 </ComboBox>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                <Label Content="Категория"></Label>
+
                 <ComboBox Name="CategoriesCombo"  Margin="10,10" Height="50" Width="260"  ItemsSource="{Binding Categories, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  DisplayMemberPath="CategoryName" SelectedValuePath="Id" SelectedValue="{Binding ComboCategories, Mode=TwoWay}"   HorizontalAlignment="Center" VerticalAlignment="Center">
                 </ComboBox>
+                <Label Content="Комментарий"></Label>
+
                 <TextBox Name="CommentTxt"  Margin="10,10" Height="50" Width="260" Text="{Binding Comment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data.Entity;
@@ -14,7 +15,17 @@ namespace Budget_Planner.ViewModel
     internal class HistoryViewModel : INotifyCollectionChanged
     {
         #region Lists
-        public List<OperationInclude> operationInclude { get; set; }
+
+        private ObservableCollection<OperationInclude> _operationInclude;
+        public ObservableCollection<OperationInclude> OperationInclude
+        {
+            get { return _operationInclude ?? (_operationInclude = new ObservableCollection<OperationInclude>()); }
+            set
+            {
+                _operationInclude = value;
+                OnPropertyChanged("OperationInclude");
+            }
+        }
         private RelayCommand editCommand;
         ApplicationContext db;
         #endregion
@@ -22,12 +33,11 @@ namespace Budget_Planner.ViewModel
         {
             // Реализация вывода, замена методу include или запросу join, не получилось т.к. модель C# не хранит в себе ссылки на таблицы, хоть я и добавлял внешние ключи
             db = new ApplicationContext();
-            operationInclude = new List<OperationInclude>();
             foreach (var item in db.Operations)
             {
                 var typename = db.OperationTypes.Where(i => i.Id == item.Type_Id).FirstOrDefault();
                 var catname = db.Categories.Where(i => i.Id == item.Categories_Id).FirstOrDefault();
-                operationInclude.Add(new OperationInclude
+                OperationInclude.Add(new OperationInclude
                 {
                     Sum = item.Sum,
                     TypeOperationName = typename.TypeOperationName,

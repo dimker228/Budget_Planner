@@ -1,17 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Budget_Planner.Model
 {
-    public class OperationInclude
+    public class OperationInclude : INotifyCollectionChanged
     {
-        public object Sum { get; set; }
-        public object TypeOperationName { get; set; }
-        public object Date { get; set; }
-        public object CategoryName { get; set; }
-        public object Comment { get; set; }
+        private object _sum;
+        private object _typeOperationName;
+        private object _date;
+        private object _categoryName;
+        private object _comment;
+        public object Sum
+        {
+            get { return _sum; }
+            set
+            {
+                _sum = value;
+                OnPropertyChanged("Sum");
+            }
+        }
+        public object TypeOperationName {
+            get { return _typeOperationName; }
+            set
+            {
+                _typeOperationName = value;
+                OnPropertyChanged("TypeOperationName");
+            }
+        }
+        public object Date {
+            get { return _date; }
+            set
+            {
+                _date = value;
+                OnPropertyChanged("Date");
+            }
+        }
+        public object CategoryName
+        {
+            get { return _categoryName; }
+            set
+            {
+                _categoryName = value;
+                OnPropertyChanged("CategoryName");
+            }
+        }
+        public object Comment {
+            get { return _comment; }
+            set
+            {
+                _comment = value;
+                OnPropertyChanged("Comment");
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+
+        public event NotifyCollectionChangedEventHandler CollectionChanged;
     }
 }

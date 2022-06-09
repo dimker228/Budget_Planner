@@ -8,13 +8,13 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HistoryPage">
     <Grid>
-        <DataGrid ItemsSource="{Binding operationInclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False"  >
+        <DataGrid ItemsSource="{Binding OperationInclude, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  AutoGenerateColumns="False"  >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Дата" Binding="{Binding Date}"/>
-                <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"/>
-                <DataGridTextColumn Header="Тип" Binding="{Binding TypeOperationName}"/>
-                <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}"/>
-                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"/>
+                <DataGridTextColumn Header="Дата" Binding="{Binding Date}" Width="100*"/>
+                <DataGridTextColumn Header="Сумма" Binding="{Binding Sum}"  Width="100*"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding TypeOperationName}"  Width="100*"/>
+                <DataGridTextColumn Header="Категория" Binding="{Binding CategoryName}"  Width="100*"/>
+                <DataGridTextColumn Header="Комментарий" Binding="{Binding Comment}"  Width="100*"/>
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
