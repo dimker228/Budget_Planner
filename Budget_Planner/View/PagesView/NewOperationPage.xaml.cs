@@ -21,7 +21,11 @@ namespace Budget_Planner.View.PagesView
             InitializeComponent();
             DataContext = new ApplicationViewModel();
         }
-
+        /// <summary>
+        /// Событие для заполнения категорий при выборе типа операции
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TypeCombo_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             db = new ApplicationContext();
@@ -34,7 +38,6 @@ namespace Budget_Planner.View.PagesView
             {
                 CategoriesCombo.ItemsSource = db.Categories.Where(i => i.Id >= 5).ToList();
             }
-
         }
     }
 }

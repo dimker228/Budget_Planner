@@ -10,7 +10,7 @@
       Title="NewOperationPage">
 
 
-    <Grid>
+    <Grid HorizontalAlignment="Left"  VerticalAlignment="Stretch" >
         <StackPanel  Orientation="Vertical" >
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="321">
                 <Label Content="Счет" Height="30" Width="143" />

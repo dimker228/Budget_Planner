@@ -13,6 +13,7 @@ namespace Budget_Planner.ViewModel
 {
     public class ApplicationViewModel : INotifyPropertyChanged
     {
+        // Объявление модели и переменных для взаимодействия
         #region Lists
         
         private string _sum;
@@ -79,26 +80,25 @@ namespace Budget_Planner.ViewModel
             }
         }
         #endregion
+        /// <summary>
+        /// Заполнение вью страницы 
+        /// </summary>
         public ApplicationViewModel()
         {
             db = new ApplicationContext();
-            ////db.Categories.Load();
             db.OperationTypes.Load();
-            //Categories = db.Categories.ToList();
             OperationTypes = db.OperationTypes.ToList();
             NullCommand = new CommandClass();
             AddCommand = new AddCommand();
-            
         }
 
-
+        //Объявление команд для работы с приложением
         #region Command
 
 
         public ICommand AddCommand
         {
             get;
-
         }
 
         

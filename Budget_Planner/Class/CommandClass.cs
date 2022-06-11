@@ -4,6 +4,8 @@ using Budget_Planner.ViewModel;
 
 namespace Budget_Planner.Class
 {
+    //Команда обнуления данных на странице добавления новой операции
+
     internal class CommandClass : ICommand
     {
         public bool CanExecute(object parameter)

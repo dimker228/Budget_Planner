@@ -31,10 +31,12 @@ namespace Budget_Planner.ViewModel
 
         }
 
+        /// <summary>
+        /// Реализация вывода, замена методу include или запросу join, не получилось т.к. модель C# не хранит в себе ссылки на таблицы, хоть я и добавлял внешние ключи
+        /// </summary>
         public void DisplayMethod()
         {
             OperationInclude.Clear();
-            // Реализация вывода, замена методу include или запросу join, не получилось т.к. модель C# не хранит в себе ссылки на таблицы, хоть я и добавлял внешние ключи
             db = new ApplicationContext();
             foreach (var item in db.Operations)
             {

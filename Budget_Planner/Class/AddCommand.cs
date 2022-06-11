@@ -7,6 +7,7 @@ using Budget_Planner.ViewModel;
 
 namespace Budget_Planner.Class
 {
+    //Команда добавления новой операции
     internal class AddCommand : ICommand
     {
 
@@ -60,7 +61,6 @@ namespace Budget_Planner.Class
                 else
                 {
                              MessageBox.Show("Проверьте корректность ввода", "Ошибка");
-
                 }
 
             }

@@ -26,6 +26,9 @@ namespace Budget_Planner.ViewModel
             ListMethod();
         }
 
+        /// <summary>
+        /// Заполнение страницы баланса
+        /// </summary>
         public void ListMethod()
         {
             db = new ApplicationContext();

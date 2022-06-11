@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Budget_Planner.View.PagesView;
@@ -10,6 +6,8 @@ using Budget_Planner.ViewModel;
 
 namespace Budget_Planner.Class
 {
+    //Команда открытия страницы баланса
+
     internal class OpenBalancePageCommand : ICommand
     {
         public bool CanExecute(object parameter)
