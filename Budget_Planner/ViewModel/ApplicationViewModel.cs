@@ -62,6 +62,8 @@ namespace Budget_Planner.ViewModel
             get { return operationsTypes; }
             set
             {
+
+            
                 operationsTypes = value;
                 OnPropertyChanged("OperationTypes");
             }
@@ -71,7 +73,8 @@ namespace Budget_Planner.ViewModel
             get { return categories; }
             set
             {
-                categories = value;
+
+                categories = value; 
                 OnPropertyChanged("Categories");
             }
         }
@@ -79,13 +82,13 @@ namespace Budget_Planner.ViewModel
         public ApplicationViewModel()
         {
             db = new ApplicationContext();
-            db.Categories.Load();
+            ////db.Categories.Load();
             db.OperationTypes.Load();
-            Categories = db.Categories.ToList();
+            //Categories = db.Categories.ToList();
             OperationTypes = db.OperationTypes.ToList();
             NullCommand = new CommandClass();
             AddCommand = new AddCommand();
-
+            
         }
 
 

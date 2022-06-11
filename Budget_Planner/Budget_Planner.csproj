@@ -75,6 +75,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Class\AddCommand.cs" />
+    <Compile Include="Class\ComboBoxCommand.cs" />
     <Compile Include="Class\CommandClass.cs" />
     <Compile Include="Class\OpenAddPageCommand.cs" />
     <Compile Include="Class\OpenBalancePageCommand.cs" />

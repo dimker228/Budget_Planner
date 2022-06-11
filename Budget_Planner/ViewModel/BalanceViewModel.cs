@@ -7,7 +7,7 @@ using Budget_Planner.Model;
 
 namespace Budget_Planner.ViewModel
 {
-    internal class BalanceViewModel : INotifyCollectionChanged
+    internal class BalanceViewModel : INotifyPropertyChanged
     {
         ApplicationContext db;
         private IEnumerable<Balances> _balances;
