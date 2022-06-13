@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
-
 using System.Runtime.CompilerServices;
 
 
@@ -15,9 +14,6 @@ namespace Budget_Planner.Model
         private string _comment;
         public int Categories_Id { get; set; }
         public int Type_Id { get; set; }
-
-        //public Categories Categories { get; set; }
-        //public OperationTypes OperationTypes { get; set; }
 
         public string Sum
         {

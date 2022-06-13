@@ -10,7 +10,7 @@
       Title="NewOperationPage">
 
 
-    <Grid HorizontalAlignment="Left"  VerticalAlignment="Stretch" >
+    <Grid HorizontalAlignment="left"  VerticalAlignment="Stretch" >
         <StackPanel  Orientation="Vertical" >
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Width="321">
                 <Label Content="Счет" Height="30" Width="143" />
@@ -18,8 +18,8 @@
 
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" >
-                <TextBox x:Name="SumTxt"  Margin="10,10" Height="30" Width="120"  Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center"/>
-                <ComboBox x:Name="TypeCombo"  SelectionChanged="TypeCombo_OnSelectionChanged"  Margin="10,10" Height="30" Width="186" ItemsSource="{Binding OperationTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TypeOperationName" SelectedValuePath="Id"  SelectedValue="{Binding ComboType, Mode=TwoWay}"    VerticalAlignment="Center">
+                <TextBox x:Name="SumTxt"  Margin="10,10" Height="30" Width="120"  Text="{Binding Sum, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
+                <ComboBox x:Name="TypeCombo"  Margin="10,10" Height="30" Width="186" ItemsSource="{Binding OperationTypes, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="TypeOperationName" SelectedValuePath="Id"  SelectedValue="{Binding ComboType, Mode=TwoWay}"    VerticalAlignment="Center">
 
                 </ComboBox>
             </StackPanel>

@@ -11,7 +11,6 @@ namespace Budget_Planner.Class
     internal class AddCommand : ICommand
     {
 
-
         public bool CanExecute(object parameter)
         {
             return true;
@@ -30,9 +29,9 @@ namespace Budget_Planner.Class
                 if (isNum && applicationViewModel.ComboType != 0 && applicationViewModel.ComboCategories != 0)
                 {
                     var operations = new Operations();
-                    var b = new Balances();
-                    b.Id = 1;
-                    var balances = db.Balances.Find(b.Id);
+                    var balances1 = new Balances();
+                    balances1.Id = 1;
+                    var balances = db.Balances.Find(balances1.Id);
                     operations.Sum = applicationViewModel.Sum;
                     operations.Type_Id = applicationViewModel.ComboType;
                     operations.Comment = applicationViewModel.Comment;
@@ -60,7 +59,7 @@ namespace Budget_Planner.Class
                 }
                 else
                 {
-                             MessageBox.Show("Проверьте корректность ввода", "Ошибка");
+                    MessageBox.Show("Проверьте корректность ввода", "Ошибка");
                 }
 
             }

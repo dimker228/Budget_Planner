@@ -13,7 +13,6 @@ namespace Budget_Planner.Model
         public virtual Categories Categories { get; set; }
 
 
-
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

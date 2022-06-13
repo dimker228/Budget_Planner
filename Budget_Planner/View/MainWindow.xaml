@@ -11,15 +11,15 @@
             <ColumnDefinition MinWidth="120" MaxWidth="300" Width="*"/>
             <ColumnDefinition MinWidth="700" Width="*" />
         </Grid.ColumnDefinitions>
-        <Menu  HorizontalContentAlignment="Center"   >
+        <Menu  HorizontalContentAlignment="Center" VerticalAlignment="Stretch"   >
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
                     <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <Button  Content="Счет" Command="{Binding OpenBalancePage}" CommandParameter="{Binding}" Width="95"  Height="38"   />
-            <Button    Content="Новая операция"  Command="{Binding OpenAddPage }" CommandParameter="{Binding}" Height="42" />
-            <Button  Content="История" Command="{Binding OpenHistoryPage}" CommandParameter="{Binding}" Width="96" Height="42" />
+            <MenuItem HorizontalContentAlignment="Left" Header="Счет"  Command="{Binding OpenBalancePage}" CommandParameter="{Binding}" Height="50"   />
+            <MenuItem  HorizontalContentAlignment="Left" Header="Новая операция"   Command="{Binding OpenAddPage }" CommandParameter="{Binding}" Height="50" />
+            <MenuItem  HorizontalContentAlignment="Left" Header="История" Command="{Binding OpenHistoryPage}" CommandParameter="{Binding}" Height="50" />
         </Menu>
         <Frame Grid.Column="1" Content="{Binding CurrentPage, Mode= TwoWay , UpdateSourceTrigger= PropertyChanged}" NavigationUIVisibility="Hidden" />
 

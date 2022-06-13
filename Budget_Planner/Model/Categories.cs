@@ -21,7 +21,6 @@ namespace Budget_Planner.Model
             }
         }
 
-        //public List<Operations> Operations { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -46,6 +46,17 @@ namespace Budget_Planner.ViewModel
             {
                 _comboType = value;
                 OnPropertyChanged("ComboType");
+                db = new ApplicationContext();
+                if (ComboType == 1)
+                {
+                    Categories = db.Categories.Where(i => i.Id <= 4).ToList();
+                }
+                if (ComboType == 2)
+                {
+                    Categories = db.Categories.Where(i => i.Id >= 5).ToList();
+
+                }
+
             }
         }
         public int ComboCategories {
@@ -63,8 +74,7 @@ namespace Budget_Planner.ViewModel
             get { return operationsTypes; }
             set
             {
-
-            
+                
                 operationsTypes = value;
                 OnPropertyChanged("OperationTypes");
             }
@@ -74,7 +84,6 @@ namespace Budget_Planner.ViewModel
             get { return categories; }
             set
             {
-
                 categories = value; 
                 OnPropertyChanged("Categories");
             }
@@ -92,6 +101,7 @@ namespace Budget_Planner.ViewModel
             AddCommand = new AddCommand();
         }
 
+     
         //Объявление команд для работы с приложением
         #region Command
 
