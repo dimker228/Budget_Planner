@@ -21,51 +21,54 @@ namespace Budget_Planner.Class
         {
             if (parameter is ApplicationViewModel applicationViewModel)
             {
-                db = new ApplicationContext();
-                HistoryViewModel historyViewModel = new HistoryViewModel();
-                BalanceViewModel balanceView = new BalanceViewModel();
-                double num;
-                bool isNum = double.TryParse(applicationViewModel.Sum, out num);
-                if (isNum && applicationViewModel.ComboType != 0 && applicationViewModel.ComboCategories != 0)
-                {
-                    var operations = new Operations();
-                    var balances1 = new Balances();
-                    balances1.Id = 1;
-                    var balances = db.Balances.Find(balances1.Id);
-                    operations.Sum = applicationViewModel.Sum;
-                    operations.Type_Id = applicationViewModel.ComboType;
-                    operations.Comment = applicationViewModel.Comment;
-                    operations.Categories_Id = applicationViewModel.ComboCategories;
-                    operations.Date = DateTime.Now;
-                    db.Operations.Add(operations);
-                    db.SaveChanges();
-                    db.Entry(operations).State = EntityState.Detached;
-                    if (applicationViewModel.ComboType == 1)
-                    {
-                        balances.Balance =
-                            Convert.ToString(Convert.ToDouble(operations.Sum) + Convert.ToDouble(balances.Balance));
-                    }
-                    else
-                    {
-                        balances.Balance =
-                            Convert.ToString(Convert.ToDouble(balances.Balance) - Convert.ToDouble(operations.Sum));
-                       
-                    }
-                    db.Entry(balances).State = EntityState.Modified;
-                    db.SaveChanges();
-                    MessageBox.Show("Операция добавлена", "Успешно");
-                    historyViewModel.DisplayMethod();
-                    balanceView.ListMethod();
-                }
-                else
-                {
-                    MessageBox.Show("Проверьте корректность ввода", "Ошибка");
-                }
-
+                InsertMethod(applicationViewModel.Sum, applicationViewModel.ComboType, applicationViewModel.Comment, applicationViewModel.ComboCategories);
             }
 
         }
 
+        public void InsertMethod(string sum, int comboType, string comment, int comboCategories)
+        {
+            db = new ApplicationContext();
+            HistoryViewModel historyViewModel = new HistoryViewModel();
+            BalanceViewModel balanceView = new BalanceViewModel();
+            double num;
+            bool isNum = double.TryParse(sum, out num);
+            if (isNum && comboType != 0 && comboCategories != 0)
+            {
+                var operations = new Operations();
+                var balances1 = new Balances();
+                balances1.Id = 1;
+                var balances = db.Balances.Find(balances1.Id);
+                operations.Sum = sum;
+                operations.Type_Id = comboType;
+                operations.Comment = comment;
+                operations.Categories_Id = comboCategories;
+                operations.Date = DateTime.Now;
+                db.Operations.Add(operations);
+                db.SaveChanges();
+                db.Entry(operations).State = EntityState.Detached;
+                if (comboType == 1 || Convert.ToInt32(sum) <= 0)
+                {
+                    balances.Balance =
+                        Convert.ToString(Convert.ToDouble(operations.Sum) + Convert.ToDouble(balances.Balance));
+                }
+                else
+                {
+                    balances.Balance =
+                        Convert.ToString(Convert.ToDouble(balances.Balance) - Convert.ToDouble(operations.Sum));
+
+                }
+                db.Entry(balances).State = EntityState.Modified;
+                db.SaveChanges();
+                MessageBox.Show("Операция добавлена", "Успешно");
+                historyViewModel.DisplayMethod();
+                balanceView.ListMethod();
+            }
+            else
+            {
+                MessageBox.Show("Проверьте корректность ввода", "Ошибка");
+            }
+        }
 
         public event EventHandler CanExecuteChanged;
 
